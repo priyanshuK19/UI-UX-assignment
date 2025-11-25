@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To-Do List (Basic)</title>
+
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        background: #f2f2f2;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h1{
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .box{
+        background: white;
+        padding: 15px;
+        border: 1px solid #ccc;
+        max-width: 700px;
+        margin: auto;
+        border-radius: 6px;
+    }
+
+    label{
+        font-weight: bold;
+        display: block;
+        margin-top: 10px;
+    }
+
+    input, textarea{
+        width: 100%;
+        padding: 8px;
+        margin-top: 4px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    textarea{ height: 60px; }
+
+    button{
+        padding: 8px 12px;
+        margin-top: 12px;
+        border: none;
+        background: #4285f4;
+        color: white;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover{
+        background: #3367d6;
+    }
+
+    .task{
+        border: 1px solid #ccc;
+        background: #fff;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 4px;
+    }
+
+    .task.completed .title{
+        text-decoration: line-through;
+        color: gray;
+    }
+
+    .actions button{
+        background: #e0e0e0;
+        color: black;
+        margin-right: 5px;
+    }
+
+    .actions button:hover{
+        background: #d5d5d5;
+    }
+
+</style>
+</head>
+
+<body>
+
+<h1>To-Do List</h1>
+
+<div class="box">
+    <label>Task Title</label>
+    <input type="text" id="title" placeholder="Enter title">
+
+    <label>Description</label>
+    <textarea id="desc" placeholder="Enter description"></textarea>
+
+    <button onclick="addTask()">Add Task</button>
+</div>
+
+<div class="box" style="margin-top:20px;">
+    <h3>Your Tasks</h3>
+    <div id="taskList"></div>
+</div>
+
+<script>
+
+function addTask(){
+    const t = document.getElementById("title").value.trim();
+    const d = document.getElementById("desc").value.trim();
+
+    if(t === ""){
+        alert("Title cannot be empty");
+        return;
+    }
+
+    const task = document.createElement("div");
+    task.className = "task";
+
+    task.innerHTML = `
+        <p class="title"><strong>${t}</strong></p>
+        <p class="description">${d}</p>
+
+        <div class="actions">
+            <button onclick="toggleComplete(this)">Complete</button>
+            <button onclick="editTask(this)">Edit</button>
+            <button onclick="deleteTask(this)">Delete</button>
+        </div>
+    `;
+
+    document.getElementById("taskList").prepend(task);
+
+    document.getElementById("title").value = "";
+    document.getElementById("desc").value = "";
+}
+
+function deleteTask(btn){
+    btn.parentElement.parentElement.remove();
+}
+
+function toggleComplete(btn){
+    const task = btn.parentElement.parentElement;
+    task.classList.toggle("completed");
+
+    btn.innerText = task.classList.contains("completed") ? "Undo" : "Complete";
+}
+
+function editTask(btn){
+    const task = btn.parentElement.parentElement;
+
+    const title = task.querySelector(".title");
+    const desc = task.querySelector(".description");
+
+    const newTitle = prompt("Edit Title:", title.innerText);
+    const newDesc = prompt("Edit Description:", desc.innerText);
+
+    if(newTitle !== null && newTitle.trim() !== ""){
+        title.innerHTML = "<strong>" + newTitle + "</strong>";
+    }
+
+    if(newDesc !== null){
+        desc.innerText = newDesc;
+    }
+}
+
+</script>
+
+</body>
+</html>
