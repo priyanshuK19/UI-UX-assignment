@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SkyTrail Travels - Booking</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<nav>
+  <div class="container">
+    <a href="index.html">Home</a>
+    <a href="packages.html">Packages</a>
+    <a href="booking.html" class="active">Book</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">About / Contact</a>
+  </div>
+</nav>
+
+<header class="hero" 
+style="background-image:url('https://images.unsplash.com/photo-1576485307228-25f5d8fbc3f5');">
+  <h1>Booking Form</h1>
+</header>
+
+<div class="container">
+
+<section class="card">
+<form>
+
+  <div class="row">
+    <label>Name:<br><input type="text" required></label>
+    <label>Email:<br><input type="email" required></label>
+    <label>Phone:<br><input type="tel"></label>
+
+    <label>Destination:<br>
+      <select required>
+        <option>Manali</option>
+        <option>Goa</option>
+        <option>Rajasthan</option>
+      </select>
+    </label>
+
+    <label>Package:<br>
+      <select required>
+        <option>HIM-01</option>
+        <option>GOA-02</option>
+        <option>RAJ-03</option>
+      </select>
+    </label>
+
+    <label>Start Date:<br><input type="date"></label>
+    <label>End Date:<br><input type="date"></label>
+  </div>
+
+  <label>Notes:<br>
+    <textarea rows="4"></textarea>
+  </label>
+
+  <br><br>
+  <button class="btn">Submit</button>
+
+</form>
+</section>
+
+</div>
+
+<footer>© 2025 SkyTrail Travels</footer>
+
+</body>
+</html>
