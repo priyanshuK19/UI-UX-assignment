@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gallery — SkyTrail</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+
+<header><h1>Gallery</h1></header>
+
+<nav>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="packages.html">Packages</a></li>
+    <li><a href="booking.html">Book</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<main class="container">
+  <section class="card">
+
+    <h2>Travel Destinations</h2>
+
+    <div class="gallery">
+
+      <!-- 🔥 Jaipur Amer Fort -->
+      <img src="download (1).jpeg"
+           
+           alt="Amer Fort"
+           title="Jaipur — Amer Fort">
+
+      <!-- 🔥 Udaipur Lake Palace -->
+      <img src="download (2).jpeg"
+           
+           alt="Udaipur Lake Palace"
+           title="Udaipur — Lake Palace">
+
+      <!-- 🔥 Manali Snow View -->
+      <img src="download.jpeg"
+           
+           alt="Manali Hills"
+           title="Manali — Snow View">
+
+      <!-- 🔥 Goa Beach Sunset -->
+      <img src="photo-1507525428034-b723cf961d3e.jpeg"
+           
+           alt="Goa Beach Sunset"
+           title="Goa — Beach Sunset">
+
+      <!-- 🔥 Extra: Image 1 -->
+      <img src="/mnt/data/Screenshot 2025-11-25 170441.png"
+           data-large="/mnt/data/Screenshot 2025-11-25 170441.png"
+           alt="Extra Image 1"
+           title="Uploaded Image 1">
+
+      <!-- 🔥 Extra: Image 2 -->
+      <img src="/mnt/data/Screenshot 2025-11-25 170522.png"
+           data-large="/mnt/data/Screenshot 2025-11-25 170522.png"
+           alt="Extra Image 2"
+           title="Uploaded Image 2">
+
+    </div>
+
+  </section>
+</main>
+
+<!-- Modal -->
+<div class="modal" role="dialog" aria-modal="true">
+  <div class="box">
+    <header>
+      <h3 id="modalCap">Preview</h3>
+      <button onclick="document.querySelector('.modal').classList.remove('open');document.body.style.overflow=''">Close</button>
+    </header>
+    <img id="modalImg" src="" alt="">
+  </div>
+</div>
+
+<footer class="container">© 2025 SkyTrail</footer>
+</body>
+</html>

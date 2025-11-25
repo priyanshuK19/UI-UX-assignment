@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SkyTrail Travels — Home</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+<header><h1>SkyTrail Travels</h1></header>
+
+<nav>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="packages.html">Packages</a></li>
+    <li><a href="booking.html">Book</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<main class="container">
+  <!-- Use your uploaded file first; fallback to local assets; final fallback to Unsplash -->
+  <img
+    class="banner"
+    alt="SkyTrail banner"
+    src="photo-1507525428034-b723cf961d3e.jpeg"
+    onerror="this.onerror=null;
+             this.src='assets/priyanshu.jpg';
+             this.addEventListener('error',()=>{ this.src='https://images.unsplash.com/photo-1535223289827-42f1e9919769'; });"
+    loading="eager"/>
+
+  <section class="card flex-row">
+    <div class="col">
+      <h2>Welcome</h2>
+      <p>Simple site enhanced for Assignment 6: data-driven packages table, a live price estimator, and an attribute-powered gallery modal. Clean markup, no gimmicks.</p>
+      <ul>
+        <li>Data → table (with Final Price)</li>
+        <li>Estimator: nights, weekend, guests, promo</li>
+        <li>Gallery with modal</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3>Confused ? chill we got your travel</h3>
+      <p class="small">Put your photo at our website is best for you. The banner will auto-use it. If you’re running only in the chat preview, the <code>/mnt/data/…</code> source already works.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="container">© 2025 SkyTrail</footer>
+</body>
+</html>

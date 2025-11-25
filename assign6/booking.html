@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Booking — SkyTrail</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+<header><h1>Booking</h1></header>
+<nav>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="packages.html">Packages</a></li>
+    <li><a href="booking.html">Book</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="contact.html" target="_blank">Contact</a></li>
+  </ul>
+</nav>
+
+<main class="container">
+  <section class="card">
+    <form id="bookingForm">
+      <label>Package
+        <select name="package" required>
+          <option value="">Select…</option>
+          <option value="HIM-01">HIM-01 – Manali</option>
+          <option value="GOA-02">GOA-02 – Goa</option>
+          <option value="RAJ-03">RAJ-03 – Jaipur–Udaipur</option>
+        </select>
+      </label>
+
+      <div class="container" style="padding:0">
+        <div class="card" style="margin:12px 0">
+          <div class="container" style="display:flex;gap:12px;flex-wrap:wrap;padding:0">
+            <div style="flex:1;min-width:220px">
+              <label>Check-in <input type="date" name="checkin" required></label>
+            </div>
+            <div style="flex:1;min-width:220px">
+              <label>Check-out <input type="date" name="checkout" required></label>
+            </div>
+            <div style="flex:1;min-width:160px">
+              <label>Guests <input type="number" name="guests" min="1" value="2"></label>
+            </div>
+            <div style="flex:1;min-width:200px">
+              <label>Promo Code <input type="text" name="promo" placeholder="EARLYBIRD / STUDENT"></label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p id="liveTotal"><em>Fill package + dates to see total.</em></p>
+      <button id="submitBtn" disabled>Submit Inquiry</button>
+    </form>
+  </section>
+</main>
+
+<footer class="container">© 2025 SkyTrail</footer>
+</body>
+</html>
