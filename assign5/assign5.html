@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Assignment 5 — Basic UI</title>
+<style>
+  
+  body { font-family: Arial, sans-serif; margin: 16px; color:#222; }
+  h1 { font-size: 22px; margin: 0 0 8px; }
+  h2 { font-size: 18px; margin: 18px 0 6px; }
+  section { margin: 14px 0; padding-bottom: 10px; border-bottom: 1px solid #ccc; }
+  label { display: block; margin: 8px 0 4px; }
+  input, button, textarea { padding: 6px; }
+  input[type="number"] { width: 160px; }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .out { background: #f3f3f3; border: 1px solid #ccc; padding: 8px; font-family: Consolas, monospace; white-space: pre-wrap; }
+  small { color:#555; }
+</style>
+</head>
+<body>
+<h1>Assignment 5 — JavaScript Basics (Plain UI)</h1>
+<p><small>No styling magic. Just the tasks.</small></p>
+
+<!-- i. Two numbers -->
+<section>
+  <h2>i) Two Numbers → Sum, Difference, Product, Quotient</h2>
+  <div class="row">
+    <div>
+      <label for="n1">Number 1</label>
+      <input id="n1" type="number" placeholder="10">
+    </div>
+    <div>
+      <label for="n2">Number 2</label>
+      <input id="n2" type="number" placeholder="3">
+    </div>
+  </div>
+  <p><button id="calcBtn">Calculate</button></p>
+  <div id="calcOut" class="out"></div>
+</section>
+
+<!-- ii. Array tasks -->
+<section>
+  <h2>ii) Array of 5 Numbers</h2>
+  <p>Enter five numbers, separated by commas (e.g., 5, 2, 9, -1, 6)</p>
+  <input id="arrInput" type="text" style="width:420px" placeholder="5, 2, 9, -1, 6">
+  <p class="row">
+    <button id="arrAnalyzeBtn">Analyze (min/max)</button>
+    <button id="arrSortAscBtn">Sort Ascending</button>
+    <button id="arrSortDescBtn">Sort Descending</button>
+  </p>
+  <div id="arrOut" class="out"></div>
+</section>
+
+<!-- iii. Form validation -->
+<section>
+  <h2>iii) Form Validation</h2>
+  <div class="row">
+    <div>
+      <label for="vname">Name</label>
+      <input id="vname" type="text" placeholder="Your name">
+    </div>
+    <div>
+      <label for="vemail">Email</label>
+      <input id="vemail" type="email" placeholder="you@example.com">
+    </div>
+    <div>
+      <label for="vage">Age (18–100)</label>
+      <input id="vage" type="number" placeholder="18">
+    </div>
+  </div>
+  <p><button id="validateBtn">Validate</button></p>
+  <div id="valOut" class="out"></div>
+</section>
+
+<!-- iv. Student object -->
+<section>
+  <h2>iv) Student Object Operations</h2>
+  <div class="row">
+    <div><label for="sname">Name</label><input id="sname" type="text" placeholder="Priyanshu"></div>
+    <div><label for="sage">Age</label><input id="sage" type="number" placeholder="20"></div>
+    <div><label for="sgrade">Grade</label><input id="sgrade" type="text" placeholder="A"></div>
+    <div><label for="sclass">Class to Add</label><input id="sclass" type="text" placeholder="CSE-2"></div>
+    <div><label for="snewgrade">New Grade</label><input id="snewgrade" type="text" placeholder="A+"></div>
+  </div>
+  <p><button id="studentBtn">Run</button></p>
+  <div id="studOut" class="out"></div>
+</section>
+
+<!-- v. map / filter / reduce -->
+<section>
+  <h2>v) Filter → Map → Reduce</h2>
+  <p>Remove odd numbers, multiply the rest by 2, then sum.</p>
+  <input id="pipeInput" type="text" style="width:420px" placeholder="1, 2, 3, 4, 5, 6">
+  <p><button id="pipeBtn">Process</button></p>
+  <div id="pipeOut" class="out"></div>
+</section>
+
+<script>
+function parseNumberList(text){
+  return text.split(",").map(s=>s.trim()).filter(Boolean).map(Number).filter(Number.isFinite);
+}
+
+/* i) arithmetic */
+document.getElementById('calcBtn').onclick = () => {
+  const a = Number(document.getElementById('n1').value);
+  const b = Number(document.getElementById('n2').value);
+  if(!Number.isFinite(a)||!Number.isFinite(b)){
+    document.getElementById('calcOut').textContent = "Enter two valid numbers."; return;
+  }
+  const sum=a+b, diff=a-b, prod=a*b, quot = b===0 ? "undefined (division by zero)" : a/b;
+  document.getElementById('calcOut').textContent =
+`a=${a}, b=${b}
+Sum: ${sum}
+Difference: ${diff}
+Product: ${prod}
+Quotient: ${quot}`;
+};
+
+/* ii) array tasks */
+const arrIn = document.getElementById('arrInput');
+const arrOut = document.getElementById('arrOut');
+function needFive(arr){ if(arr.length!==5) throw new Error("Enter exactly 5 numbers."); }
+
+document.getElementById('arrAnalyzeBtn').onclick = () => {
+  try{
+    const arr = parseNumberList(arrIn.value); needFive(arr);
+    arrOut.textContent = `Array: [${arr.join(", ")}]
+Smallest: ${Math.min(...arr)}
+Largest: ${Math.max(...arr)}`;
+  }catch(e){ arrOut.textContent = e.message; }
+};
+document.getElementById('arrSortAscBtn').onclick = () => {
+  try{ const arr = parseNumberList(arrIn.value); needFive(arr);
+    arrOut.textContent = `Ascending: [${[...arr].sort((a,b)=>a-b).join(", ")}]`;
+  }catch(e){ arrOut.textContent = e.message; }
+};
+document.getElementById('arrSortDescBtn').onclick = () => {
+  try{ const arr = parseNumberList(arrIn.value); needFive(arr);
+    arrOut.textContent = `Descending: [${[...arr].sort((a,b)=>b-a).join(", ")}]`;
+  }catch(e){ arrOut.textContent = e.message; }
+};
+
+/* iii) validation */
+document.getElementById('validateBtn').onclick = () => {
+  const name = document.getElementById('vname').value.trim();
+  const email = document.getElementById('vemail').value.trim();
+  const age = Number(document.getElementById('vage').value);
+  const errs = [];
+  if(!name) errs.push("• Name is required.");
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) errs.push("• Email format is invalid.");
+  if(!Number.isFinite(age) || age<18 || age>100) errs.push("• Age must be between 18 and 100.");
+  document.getElementById('valOut').textContent = errs.length? "Validation failed:\n"+errs.join("\n") : "Form is valid.";
+};
+
+/* iv) student object */
+document.getElementById('studentBtn').onclick = () => {
+  const st = {
+    name: (document.getElementById('sname').value||"").trim() || "Unnamed",
+    age: Number(document.getElementById('sage').value)||0,
+    grades: (document.getElementById('sgrade').value||"").trim() || "N/A"
+  };
+  st.class = (document.getElementById('sclass').value||"").trim() || "Unknown";
+  const newGrade = (document.getElementById('snewgrade').value||"").trim();
+  if(newGrade) st.grades = newGrade;
+  document.getElementById('studOut').textContent =
+    Object.entries(st).map(([k,v])=>`${k}: ${v}`).join("\n");
+};
+
+/* v) filter → map → reduce */
+document.getElementById('pipeBtn').onclick = () => {
+  const arr = parseNumberList(document.getElementById('pipeInput').value);
+  if(arr.length===0){ document.getElementById('pipeOut').textContent="Enter some numbers."; return; }
+  const evens = arr.filter(n=>n%2===0);
+  const doubled = evens.map(n=>n*2);
+  const sum = doubled.reduce((a,b)=>a+b,0);
+  document.getElementById('pipeOut').textContent =
+`Original: [${arr.join(", ")}]
+Evens: [${evens.join(", ")}]
+Doubled: [${doubled.join(", ")}]
+Sum: ${sum}`;
+};
+</script>
+</body>
+</html>
