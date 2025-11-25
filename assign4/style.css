@@ -1,0 +1,64 @@
+/* ===== Reset & base (element selectors + box model) ===== */
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:#f2f4f7;color:#222;line-height:1.6}
+
+/* ===== Layout helpers (classes) ===== */
+.wrapper{width:900px;max-width:95%;margin:auto}
+.section{background:#fff;border:1px solid #ddd;padding:20px;margin:20px 0;border-radius:6px}
+
+/* ===== Header with ID selector + pseudo-element ===== */
+header{background:#fff;border-bottom:1px solid #ddd;text-align:center;padding:18px 0}
+#site-title{color:#1a73e8;margin:0;font-size:32px}
+#site-title::after{content:"";display:block;width:80px;height:3px;background:#1a73e8;margin:6px auto 0;border-radius:2px}
+
+/* ===== Nav (flexbox) ===== */
+nav{background:#fff;border-bottom:1px solid #ddd}
+nav ul{list-style:none;display:flex;gap:16px;justify-content:center;margin:0;padding:10px 0}
+nav a{padding:6px 10px;text-decoration:none;color:#1a73e8;font-weight:bold;border-radius:4px}
+nav a:hover{background:#e9f1ff}              /* pseudo-class */
+nav a:active{transform:translateY(1px)}       /* pseudo-class */
+
+/* ===== Media blocks ===== */
+.banner{width:100%;height:250px;object-fit:cover;border:1px solid #ccc;border-radius:6px}
+.video-box{width:100%;aspect-ratio:16/9;border:1px solid #ccc;border-radius:6px;overflow:hidden}
+.video-box iframe,.video-box video{width:100%;height:100%;display:block}
+
+/* ===== Tables ===== */
+table{width:100%;border-collapse:collapse;margin-top:12px}
+th,td{border:1px solid #ccc;padding:10px;text-align:center}
+th{background:#eef4ff}
+
+/* ===== Forms (attribute selectors + pseudo-classes) ===== */
+label{display:block;margin-top:10px;font-weight:bold}
+input,select,textarea{width:100%;padding:8px;border:1px solid #ccc;border-radius:4px;margin-top:4px}
+input:focus,select:focus,textarea:focus{outline:2px solid #1a73e8}   /* pseudo-class */
+input[required]{border-color:#a0c3ff}                                  /* attribute selector */
+input[type="email"]{border-style:dashed}                               /* attribute selector */
+button{background:#1a73e8;color:#fff;border:none;padding:10px 14px;border-radius:4px;margin-top:14px;cursor:pointer}
+button:hover{background:#145cc0}
+
+/* ===== Flex rows for simple two-column sections ===== */
+.flex-row{display:flex;gap:16px;align-items:flex-start}
+.flex-row > .col{flex:1}
+
+/* ===== Gallery (CSS Grid) ===== */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.gallery-grid img{width:100%;height:150px;object-fit:cover;border:1px solid #ccc;border-radius:6px}
+
+/* ===== Misc attribute selector demo ===== */
+a[target="_blank"]{text-decoration:underline dotted}   /* attribute selector */
+
+/* ===== Footer ===== */
+footer{background:#fff;border-top:1px solid #ddd;text-align:center;padding:18px 0;margin-top:30px}
+
+/* ===== Responsive tweaks ===== */
+@media (max-width:768px){
+  .flex-row{flex-direction:column}
+  .banner{height:200px}
+}
+@media (max-width:480px){
+  nav ul{flex-wrap:wrap}
+  #site-title{font-size:26px}
+  .banner{height:170px}
+}
